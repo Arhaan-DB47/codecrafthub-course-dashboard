@@ -2,7 +2,7 @@
 
 > **IBM AI Developer Professional Certificate**
 > Course 9: *Generative AI: Elevate your Software Development Career*
-> Final Project — Part 1: Building the Backend REST API
+> Final Project — Part 1 (Backend REST API) & Part 2 (Frontend Dashboard)
 
 A simple REST API that helps developers track courses they want to learn. Built with **Python** and **Flask**, storing data in a local JSON file — no database needed!
 
@@ -24,6 +24,7 @@ A simple REST API that helps developers track courses they want to learn. Built 
   - [Update a Course](#4-update-a-course)
   - [Delete a Course](#5-delete-a-course)
 - [Testing with curl](#testing-with-curl)
+- [Frontend Dashboard (Part 2)](#frontend-dashboard-part-2)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -54,17 +55,19 @@ Instead of using a database, all course data is stored in a simple `courses.json
 ```
 CodeCraftHub/
 ├── app.py              # Main Flask application with all API endpoints
+├── index.html          # Frontend dashboard UI (Part 2)
 ├── courses.json        # JSON file where course data is stored
 ├── requirements.txt    # Python dependencies (Flask, Flask-CORS)
 └── README.md           # This documentation file
 ```
 
-| File               | Purpose                                               |
-| ------------------ | ----------------------------------------------------- |
-| `app.py`           | The Flask server with all CRUD routes and validation   |
-| `courses.json`     | Auto-created JSON file that stores your course data    |
-| `requirements.txt` | Lists the Python packages needed to run the project    |
-| `README.md`        | Project documentation (you're reading it!)             |
+| File               | Purpose                                                |
+| ------------------ | ------------------------------------------------------ |
+| `app.py`           | The Flask server with all CRUD routes and validation    |
+| `index.html`       | Single-page CRUD dashboard connecting to the REST API   |
+| `courses.json`     | Auto-created JSON file that stores your course data     |
+| `requirements.txt` | Lists the Python packages needed to run the project     |
+| `README.md`        | Project documentation (you're reading it!)              |
 
 ---
 
@@ -409,5 +412,44 @@ curl -s -X GET http://localhost:5000/api/courses/999
 
 ---
 
+## Frontend Dashboard (Part 2)
+
+The project includes a **single-page dashboard UI** (`index.html`) that connects to the backend API and provides a visual interface for managing courses.
+
+### Dashboard Features
+
+- 🎨 **Dark purple/amber theme** — Professional design with `#8B5CF6`, `#F59E0B`, and `#EF4444` color scheme
+- 📊 **Stats bar** — Live counters for Total, Not Started, In Progress, and Completed courses
+- ➕ **Add Course form** — Create new courses with full client-side validation
+- 📋 **Course cards** — Display all courses with status badges, target dates, and creation dates
+- ✏️ **Edit modal** — Update course details in a pop-up modal
+- 🗑️ **Delete** — Remove courses with confirmation prompt
+- 🔔 **Toast notifications** — Success/error feedback for every operation
+- ⏳ **Loading states** — Spinner while data is being fetched or saved
+- 📱 **Responsive** — Works on desktop, tablet, and mobile
+- 🔒 **XSS protection** — HTML escaping on all user-generated content
+
+### Running the Dashboard
+
+1. **Start the backend server:**
+
+```bash
+python app.py
+```
+
+2. **Open `index.html`** in your browser (double-click the file or use a live server)
+
+3. The dashboard will automatically connect to `http://localhost:5000/api/courses` and load your courses.
+
+> 💡 **Note:** The backend must be running on port 5000 for the dashboard to work. If you changed the port in `app.py`, update the `API_BASE_URL` variable at the top of the `<script>` section in `index.html`.
+
+### Technology
+
+- **HTML5** — Semantic structure
+- **CSS3** — Custom properties, gradients, animations, grid/flexbox layout
+- **Vanilla JavaScript** — Fetch API, DOM manipulation, no frameworks
+
+---
+
 > **Built as part of the IBM AI Developer Professional Certificate program on Coursera.**
-> Course 9: *Generative AI: Elevate your Software Development Career* — Final Project (Part 1)
+> Course 9: *Generative AI: Elevate your Software Development Career* — Final Project (Part 1 & Part 2)
